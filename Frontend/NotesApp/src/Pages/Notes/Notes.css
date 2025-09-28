@@ -1,0 +1,119 @@
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  width: 90%;
+  height: 80%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h1 {
+  text-align: center;
+  color: grey;
+}
+.logout {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.input-container {
+  margin-top: 20px;
+  gap: 15px;
+  
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+#title {
+  border: none;
+  padding: 10px;
+  font-size: 25px;
+  background-color: whitesmoke;
+  border-radius: 15px;
+}
+#content {
+  border: none;
+  resize: none;
+  padding: 10px;
+  font-size: 18px;
+  background-color: whitesmoke;
+  border-radius: 15px;
+}
+#attachment {
+}
+#submit {
+  border: none;
+  background-color: rgb(59, 190, 59);
+  color: white;
+  font-size: 20px;
+  width: 150px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin: auto;
+}
+.notes-list {
+  margin-top: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.note-container {
+  width: 49%;
+  height: 120px;
+  /* border: 1px solid black; */
+  padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.note-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-evenly;
+  margin-left: 10px;
+}
+.note-detail-container h1 {
+  font-size: 22px;
+}
+.note-detail-container p {
+  font-size: 15px;
+  width: 300px;
+}
+.note-created_at {
+  font-size: 10px;
+  color: grey;
+}
+
+.notes-list::-webkit-scrollbar {
+  width: 4px;
+}
+.notes-list::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+.notes-list::-webkit-scrollbar-thumb {
+  background: #efefef;
+  border-radius: 10px;
+}
+.notes-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

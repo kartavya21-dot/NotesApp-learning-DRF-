@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .serializers import NoteSerializer, RegisterSerializer
 from .models import Note
+from rest_framework.parsers import MultiPartParser, FormParser
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -18,7 +19,7 @@ class IsOwner(permissions.BasePermission):
 class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwner]
-
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_queryset(self):
         return Note.objects.filter(user=self.request.user)
