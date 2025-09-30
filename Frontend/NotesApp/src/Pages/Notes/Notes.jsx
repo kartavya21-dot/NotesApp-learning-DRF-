@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Notes.css";
 import axios from "axios";
-
-const backend = "http://localhost:8000/api/";
+import api from "../../services/api";
 
 const Notes = () => {
   const [title, setTitle] = useState("");
@@ -15,12 +14,9 @@ const Notes = () => {
   }, []);
 
   const fetchNotes = async () => {
+    await api.get("notes/");
     try {
-      const response = await axios.get(`${backend}notes/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const response = await api.get("notes/");
       setNotes(response.data);
     } catch (error) {
       console.log(error);
@@ -38,11 +34,8 @@ const Notes = () => {
         formData.append("attachment", attachment);
       }
 
-      await axios.post(`${backend}notes/`, formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          "Content-Type": "multipart/form-data",
-        },
+      await api.post("notes/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       fetchNotes();
