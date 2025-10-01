@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const backend = 'http://localhost:8000/api/';
+// const backend = 'http://localhost:8000/api/';
+const backend = "https://notesapp-m5qb.onrender.com/api/";
 
 const api = axios.create({ baseURL: backend });
 
