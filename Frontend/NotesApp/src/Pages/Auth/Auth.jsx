@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Auth.css";
 import axios from "axios";
+import api from '../../services/api'
 
 const backend = "http://localhost:8000/api/";
 
