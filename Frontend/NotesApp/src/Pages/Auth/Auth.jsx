@@ -40,18 +40,6 @@ const Auth = ({ setToken }) => {
     <div className="notes-container">
       {isUser ? (
         <form className="form-page">
-      <form className="form-page" onSubmit={handleSubmit}>
-        <h1>{isUser ? "Login" : "Register"}</h1>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        {!isUser && (
           <input
             type="text"
             name="username"
@@ -71,7 +59,9 @@ const Auth = ({ setToken }) => {
           <p>
             New User? <a onClick={() => setUser(!isUser)}>Register</a>
           </p>
-          <button type="submit" onClick={handleSubmit}>Login</button>
+          <button type="submit" onClick={handleSubmit}>
+            Login
+          </button>
         </form>
       ) : (
         <form className="form-page">
@@ -90,7 +80,6 @@ const Auth = ({ setToken }) => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
           <input
             type="password"
@@ -101,29 +90,14 @@ const Auth = ({ setToken }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <p>
-            Already have an account? <a onClick={() => setUser(!isUser)}>Login</a>
+            Already have an account?{" "}
+            <a onClick={() => setUser(!isUser)}>Login</a>
           </p>
           <button type="submit" onClick={handleSubmit}>
             Register
           </button>
         </form>
       )}
-        )}
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <p>
-          {isUser ? "New User? " : "Already have an account? "}
-          <a onClick={() => setUser(!isUser)}>{isUser ? "Register" : "Login"}</a>
-        </p>
-        <button type="submit">{isUser ? "Login" : "Register"}</button>
-      </form>
     </div>
   );
 };
