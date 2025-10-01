@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Notes.css";
-import axios from "axios";
 import api from "../../services/api";
 
 const Notes = () => {
@@ -14,10 +13,10 @@ const Notes = () => {
   }, []);
 
   const fetchNotes = async () => {
-    await api.get("notes/");
     try {
       const response = await api.get("notes/");
       setNotes(response.data);
+      console.log("Fetched notes:", response.data);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +41,7 @@ const Notes = () => {
       setTitle("");
       setContent("");
       setAttachment(null);
-      document.getElementById("attachment").value = ""; // reset file input
+      document.getElementById("attachment").value = "";
     } catch (error) {
       console.log(error);
     }
@@ -52,6 +51,20 @@ const Notes = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     window.location.href = "/";
+  };
+
+  // Build full Cloudinary URL
+  const getFullUrl = (relativePath) => {
+    if (!relativePath) return null;
+    
+    // If it's already a full URL, return it
+    if (relativePath.startsWith('http')) {
+      return relativePath;
+    }
+    
+    // Build the full Cloudinary URL
+    const cloudName = "dz6budxrh"; // Replace with your actual cloud name
+    return `https://res.cloudinary.com/${cloudName}/${relativePath}`;
   };
 
   return (
@@ -95,22 +108,32 @@ const Notes = () => {
       </form>
       <hr />
       <div className="notes-list">
-        {notes.map((note, index) => (
-          <div key={index} className="note-container">
-            <div className="note-detail-container">
-              <h1>{note.title}</h1>
-              <p>{note.content}</p>
-              <p className="note-created_at">{note.created_at.slice(0, 10)}</p>
+        {notes.map((note) => {
+          const fullUrl = getFullUrl(note.attachment);
+          
+          return (
+            <div key={note.id} className="note-container">
+              <div className="note-detail-container">
+                <h1>{note.title}</h1>
+                <p>{note.content}</p>
+                <p className="note-created_at">{note.created_at.slice(0, 10)}</p>
+              </div>
+              <div className="note-attachment-container">
+                {fullUrl && (
+                    (
+                      <a 
+                        href={fullUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        View
+                      </a>
+                    )
+                )}
+              </div>
             </div>
-            <div className="note-attachment-container">
-              {note.attachment && (
-                <a href={note.attachment} target="_blank">
-                  View
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
