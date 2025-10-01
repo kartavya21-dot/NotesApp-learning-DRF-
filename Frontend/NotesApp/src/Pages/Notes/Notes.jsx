@@ -22,6 +22,15 @@ const Notes = () => {
     }
   };
 
+  const handleDelete = (id) => {
+    try {
+      api.delete(`notes/${id}/`);
+      fetchNotes();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -130,6 +139,9 @@ const Notes = () => {
                       </a>
                     )
                 )}
+                <button type="button" onClick={()=>handleDelete(note.id)} className="delete">
+                  Delete
+                </button>
               </div>
             </div>
           );
