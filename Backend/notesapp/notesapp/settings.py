@@ -18,7 +18,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://notes-app-learning-drf.vercel.app/",
+    "https://notes-app-learning-drf.vercel.app",
     # Add your frontend URL after deployment
 ]
 
