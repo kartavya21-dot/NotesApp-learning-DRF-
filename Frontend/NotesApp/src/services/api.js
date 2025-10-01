@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const backend = import.meta.env.VITE_API_URL;
+const backend = "https://notesapp-m5qb.onrender.com/api/";
 
 const api = axios.create({ baseURL: backend });
+console.log(backend);
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('accessToken');

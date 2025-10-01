@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "./Auth.css";
-import axios from "axios";
-import api from '../../services/api'
-
-const backend = "http://localhost:8000/api/";
+import api from "../../services/api";
 
 const Auth = ({ setToken }) => {
   const [username, setUsername] = useState("");
@@ -16,17 +13,17 @@ const Auth = ({ setToken }) => {
 
     try {
       if (isUser) {
-        const response = await axios.post(`${backend}token/`, {
+        const response = await api.post("token/", {
           username,
           password,
         });
         console.log(response.data);
-        
+
         localStorage.setItem("accessToken", response.data.access);
         localStorage.setItem("refreshToken", response.data.refresh);
         setToken(response.data.access);
       } else {
-        const response = await axios.post(`${backend}register/`, {
+        const response = await api.post("register/", {
           username,
           email,
           password,
