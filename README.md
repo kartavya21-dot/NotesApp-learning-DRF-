@@ -1,4 +1,5 @@
 📝 Notes App
+
 Check it out: https://notes-app-learning-drf.vercel.app/
 
 A full-stack Notes Application built with Django REST Framework (DRF) as the backend and React as the frontend. This app allows users to create, edit, delete, and manage their notes with authentication support.
