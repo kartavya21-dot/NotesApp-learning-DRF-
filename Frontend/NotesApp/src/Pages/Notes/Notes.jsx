@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Notes.css";
 import api from "../../services/api";
+import './LoadingScreen.css'
 
 const Notes = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [attachment, setAttachment] = useState(null);
   const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchNotes();
@@ -14,11 +16,14 @@ const Notes = () => {
 
   const fetchNotes = async () => {
     try {
+      setLoading(true);
       const response = await api.get("notes/");
       setNotes(response.data);
       console.log("Fetched notes:", response.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,6 +40,7 @@ const Notes = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append("title", title);
       formData.append("content", content);
@@ -53,6 +59,8 @@ const Notes = () => {
       document.getElementById("attachment").value = "";
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,7 +85,7 @@ const Notes = () => {
   };
 
   return (
-    <div className="notes-container">
+    <div className={`notes-container ${loading ? "blurred" : ""}`}>
       <header className="header">
         <h1>Notes App</h1>
         <button className="logout" onClick={handleLogout}>
@@ -147,6 +155,11 @@ const Notes = () => {
           );
         })}
       </div>
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
     </div>
   );
 };
