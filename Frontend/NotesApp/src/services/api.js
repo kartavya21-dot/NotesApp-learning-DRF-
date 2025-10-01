@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const backend = 'http://localhost:8000/api/';
-const backend = "https://notesapp-m5qb.onrender.com/api/";
+const backend = import.meta.env.VITE_API_URL;
 
 const api = axios.create({ baseURL: backend });
 

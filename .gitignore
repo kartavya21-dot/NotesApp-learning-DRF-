@@ -13,9 +13,9 @@ media/
 Backend/.env
 
 # Node / React
-Frontend/node_modules/
-Frontend/build/
-Frontend/.env
+Frontend/NotesApp/node_modules/
+Frontend/NotesApp/build/
+Frontend/NotesApp/.env
 
 # OS files
 .DS_Store
