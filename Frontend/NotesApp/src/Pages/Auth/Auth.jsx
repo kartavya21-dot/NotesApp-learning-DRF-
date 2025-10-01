@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import "./Auth.css";
 import api from "../../services/api";
-
+import '../Loading/LoadingScreen.css'
 const Auth = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isUser, setUser] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       if (isUser) {
         const response = await api.post("token/", {
           username,
           password,
         });
-        console.log(response.data);
-
+        // console.log(response.data);
         localStorage.setItem("accessToken", response.data.access);
         localStorage.setItem("refreshToken", response.data.refresh);
         setToken(response.data.access);
@@ -33,11 +34,13 @@ const Auth = ({ setToken }) => {
       }
     } catch (e) {
       console.log(e);
+    }finally{
+      setLoading(false);
     }
   };
 
   return (
-    <div className="notes-container">
+    <div className={`notes-container ${loading ? "blurred" : ""}`}>
       {isUser ? (
         <form className="form-page">
           <input
@@ -97,6 +100,11 @@ const Auth = ({ setToken }) => {
             Register
           </button>
         </form>
+      )}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
       )}
     </div>
   );

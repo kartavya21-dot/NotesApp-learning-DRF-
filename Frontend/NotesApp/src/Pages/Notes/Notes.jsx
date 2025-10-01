@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Notes.css";
 import api from "../../services/api";
-import './LoadingScreen.css'
+import '../Loading/LoadingScreen.css'
 
 const Notes = () => {
   const [title, setTitle] = useState("");
@@ -19,7 +19,7 @@ const Notes = () => {
       setLoading(true);
       const response = await api.get("notes/");
       setNotes(response.data);
-      console.log("Fetched notes:", response.data);
+      // console.log("Fetched notes:", response.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -59,8 +59,6 @@ const Notes = () => {
       document.getElementById("attachment").value = "";
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -85,7 +83,7 @@ const Notes = () => {
   };
 
   return (
-    <div className={`notes-container ${loading ? "blurred" : ""}`}>
+    <div className='notes-container'>
       <header className="header">
         <h1>Notes App</h1>
         <button className="logout" onClick={handleLogout}>

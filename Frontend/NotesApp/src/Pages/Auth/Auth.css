@@ -10,47 +10,92 @@
   padding: 20px;
 }
 
-.form-page{
-    margin: auto;
-    font-family: 'Poppins', sans-serif;;
-    display: flex;
-    border: 1px solid black;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    width: 70%;
-    height: 80%;
-    background-color: whitesmoke;
-    border-radius: 15px;
+.form-page {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.form-page input {
+  width: 90%;
+  max-width: 300px;
+  border: none;
+  border-radius: 15px;
+  padding: 12px;
+  font-size: 18px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.form-page button {
+  border: none;
+  background-color: rgb(59, 190, 59);
+  color: white;
+  font-size: 18px;
+  width: 150px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.form-page button:hover {
+  background-color: rgb(45, 150, 45);
+}
+
+.form-page p {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.form-page a {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 480px) {
+  .notes-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .form-page input {
+    width: 100%;
+    font-size: 16px;
     padding: 10px;
+  }
+
+  .form-page button {
+    width: 100%;
+    font-size: 16px;
+  }
 }
 
-.form-page input{
-    border: none;
-    border-radius: 15px;
-    padding: 10px;
-    font-size: 20px;
-    background-color: white;
-    border-radius: 15px;
-}
+@media (max-width: 360px) {
+  .form-page input {
+    font-size: 14px;
+    padding: 8px;
+  }
 
-.form-page button{
-    border: none;
-    background-color: rgb(59, 190, 59);
-    color: white;
-    font-size: 20px;
-    width: 150px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-}
+  .form-page button {
+    font-size: 14px;
+    padding: 8px;
+  }
 
-.form-page p{
-    margin-top: 10px;
-}
-
-.form-page a{
-    color: blue;
+  .form-page p {
+    font-size: 12px;
+  }
 }
