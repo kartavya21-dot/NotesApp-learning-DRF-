@@ -40,6 +40,18 @@ const Auth = ({ setToken }) => {
     <div className="notes-container">
       {isUser ? (
         <form className="form-page">
+      <form className="form-page" onSubmit={handleSubmit}>
+        <h1>{isUser ? "Login" : "Register"}</h1>
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        {!isUser && (
           <input
             type="text"
             name="username"
@@ -78,6 +90,7 @@ const Auth = ({ setToken }) => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
@@ -95,6 +108,22 @@ const Auth = ({ setToken }) => {
           </button>
         </form>
       )}
+        )}
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <p>
+          {isUser ? "New User? " : "Already have an account? "}
+          <a onClick={() => setUser(!isUser)}>{isUser ? "Register" : "Login"}</a>
+        </p>
+        <button type="submit">{isUser ? "Login" : "Register"}</button>
+      </form>
     </div>
   );
 };

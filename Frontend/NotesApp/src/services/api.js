@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-const backend = "https://notesapp-m5qb.onrender.com/api/";
-
-const api = axios.create({ baseURL: backend });
-console.log(backend);
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+});
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('accessToken');
@@ -21,7 +20,9 @@ api.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
 
       try {
-        const res = await axios.post(`${backend}token/refresh/`, { refresh: refreshToken });
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}token/refresh/`, {
+          refresh: refreshToken,
+        });
         localStorage.setItem('accessToken', res.data.access);
         originalRequest.headers.Authorization = `Bearer ${res.data.access}`;
         return api(originalRequest); // retry original request
